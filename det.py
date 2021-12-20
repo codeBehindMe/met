@@ -19,9 +19,12 @@ def det(m: np.ndarray) -> float:
     # for each element in top column multiply by inner matrix determinant
     determinant  = 0
 
-    # for index, element in enumerate(m[0]):
-    #     innerMatrix = m[0:, 0:index index:-1]
-    #     determinant += element * det(innerMatrix)
+    for index, element in enumerate(m[0]):
+        innerMatrix = np.delete(m, index, 1)[1:, :]
+        if (index % 2) == 0:
+            determinant += element * det(innerMatrix)
+        else:
+            determinant -= element * det(innerMatrix)
 
 
-    raise NotImplementedError()
+    return determinant
